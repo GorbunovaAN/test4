@@ -13,22 +13,29 @@ public class Test {
             System.out.println(getAnswer(res));
         }
 
+        if (isInt(el[0])){
+            throw new MyException ("невозможно выполнить");
+
+        }
+
         if (isString(el[0]) && isInt(el[2])) {
 
             String res1 = operator1(el[1], el[0].replaceAll("\"", ""), Integer.valueOf(el[2]));
             if ( Integer.valueOf(el[2]) > 10 || Integer.valueOf(el[2]) <1 ) {
                 throw new MyException("Введенное значение должно быть от 1 до 10");
+
             }
             System.out.println(getAnswer(res1));
         }
     }
 
-    private static boolean isInt(String myint) {
+    public static boolean isInt(String myint) {
         try {
             Integer.valueOf(myint).getClass().equals(Integer.class);
             return true;
         } catch (Exception e) {
             return false;
+
         }
     }
 
@@ -80,5 +87,11 @@ public class Test {
 class MyException extends Exception {
     MyException(String message) {
         super(message);
+    }
+
+    class MyException2 extends Exception {
+        MyException2(String message) {
+            super(message);
+        }
     }
 }
